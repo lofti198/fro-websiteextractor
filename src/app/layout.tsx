@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Container from "@/components/container";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import { notoSans } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "My Blog",
@@ -19,12 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-zinc-200`}>
-        <Container>
+      <body className={`${notoSans.className} bg-zinc-200`}>
+        <main className="container mx-auto">
           <Header />
           {children}
           <Footer />
-        </Container>
+        </main>
       </body>
     </html>
   );
