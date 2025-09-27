@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Container from "@/components/container";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { notoSans } from "@/lib/fonts";
@@ -17,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notoSans.className} bg-zinc-200`}>
+      <body className={`${notoSans.className} `}>
         <main className="container mx-auto">
           <Header />
           {children}

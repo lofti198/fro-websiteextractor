@@ -20,7 +20,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="flex justify-between items-center py-4 px-7 border-b">
+    <header className="flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-7">
       {/* <Link href="/">
         <Image
           src="https://bytegrad.com/course-assets/youtube/example-logo.png"
@@ -32,22 +32,8 @@ export default function Header() {
       </Link> */}
 
       <Link href="/">
-        <h1 className={`text-3xl font-bold ${raleway.className} text-zinc-800 hover:text-zinc-900 transition-colors`}>
-          Blog
-        </h1>
+        <h1 className={`text-xl sm:text-2xl md:text-3xl font-bold ${raleway.className} text-zinc-800 hover:text-zinc-900 transition-colors`}>Blog</h1>
       </Link>
-
-      <nav>
-        <ul className="flex gap-x-5 text-[14px]">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link className={`${pathname === link.href ? "text-zinc-900" : "text-zinc-400"}`} href={link.href}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 }

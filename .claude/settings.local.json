@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//c/web-prodigies/corinna-ai-main/corinna-ai-main/src/app/**)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []
