@@ -4,6 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "websiteextractor.net",
+      },
+      {
+        protocol: "https",
         hostname: "bytegrad.com",
       },
       {

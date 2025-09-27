@@ -7,7 +7,50 @@ export const revalidate = 1200; // Disable caching for development
 function extractImageFromContent(content: string): string | null {
   const imgRegex = /<img[^>]+src="([^">]+)"/;
   const match = content.match(imgRegex);
-  return match ? match[1] : null;
+  if (match) {
+    let imageUrl = match[1];
+    // Convert protocol-relative URLs to HTTPS
+    if (imageUrl.startsWith('//')) {
+      imageUrl = 'https:' + imageUrl;
+    }
+    return imageUrl;
+  }
+  return null;
+}
+
+// Function to sanitize image URL for Next.js Image component
+function sanitizeImageUrl(url: string | null | undefined): string {
+  if (!url || url === 'EXPORT_IMAGE_URL' || (!url.startsWith('http') && !url.startsWith('/'))) {
+    return "/blog.jfif";
+  }
+
+  // Convert protocol-relative URLs to HTTPS
+  if (url.startsWith('//')) {
+    return 'https:' + url;
+  }
+
+  return url;
+}
+
+// Function to decode HTML entities
+function decodeHtmlEntities(text: string): string {
+  const entities: { [key: string]: string } = {
+    '&#8211;': '–',
+    '&#8212;': '—',
+    '&#8216;': "'",
+    '&#8217;': "'",
+    '&#8220;': '"',
+    '&#8221;': '"',
+    '&#8230;': '…',
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#039;': "'",
+    '&nbsp;': ' '
+  };
+
+  return text.replace(/&#?\w+;/g, (entity) => entities[entity] || entity);
 }
 
 export default async function Home() {
@@ -24,16 +67,17 @@ export default async function Home() {
         {data &&
           data.map((post: any) => {
             // Get featured image from embed or extract from content
-            const featuredImage =
+            const rawFeaturedImage =
               post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-              extractImageFromContent(post.content.rendered) ||
-              "https://via.placeholder.com/800x450/f3f4f6/9ca3af?text=No+Image";
+              extractImageFromContent(post.content.rendered);
+
+            const featuredImage = sanitizeImageUrl(rawFeaturedImage);
 
             return (
               <Link href={`/posts/${post.slug}`} key={post.id} className="group block">
                 <article className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1">
                   <div className="relative w-full aspect-video overflow-hidden">
-                    <Image src={featuredImage} alt={post.title.rendered} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                    <Image src={featuredImage} alt={decodeHtmlEntities(post.title.rendered)} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                   </div>
                   <div className="p-4 sm:p-5 md:p-6">
                     <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3 flex-wrap">
@@ -52,12 +96,12 @@ export default async function Home() {
                       )}
                     </div>
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-yellow-600 transition-colors leading-tight">
-                      {post.title.rendered}
+                      {decodeHtmlEntities(post.title.rendered)}
                     </h3>
                     <div
                       className="text-xs sm:text-sm text-gray-600 line-clamp-3 leading-relaxed"
                       dangerouslySetInnerHTML={{
-                        __html: post.excerpt.rendered.replace(/<[^>]*>/g, "").slice(0, 120) + "...",
+                        __html: decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, "").slice(0, 120) + "..."),
                       }}
                     />
                   </div>

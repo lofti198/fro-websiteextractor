@@ -4,6 +4,46 @@ import { Metadata } from "next";
 
 export const revalidate = 1200; // Revalidate every hour
 
+// Function to decode HTML entities
+function decodeHtmlEntities(text: string): string {
+  const entities: { [key: string]: string } = {
+    '&#8211;': '–',
+    '&#8212;': '—',
+    '&#8216;': "'",
+    '&#8217;': "'",
+    '&#8220;': '"',
+    '&#8221;': '"',
+    '&#8230;': '…',
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#039;': "'",
+    '&nbsp;': ' '
+  };
+
+  return text.replace(/&#?\w+;/g, (entity) => entities[entity] || entity);
+}
+
+// Function to fix image URLs in content
+function fixImageUrls(content: string): string {
+  return content.replace(/<img([^>]+)src="([^"]*)"([^>]*>)/g, (match, before, src, after) => {
+    let fixedSrc = src;
+
+    // Convert protocol-relative URLs to HTTPS
+    if (fixedSrc.startsWith('//')) {
+      fixedSrc = 'https:' + fixedSrc;
+    }
+
+    // Handle invalid URLs like "EXPORT_IMAGE_URL" or empty src
+    if (!fixedSrc || fixedSrc === 'EXPORT_IMAGE_URL' || (!fixedSrc.startsWith('http') && !fixedSrc.startsWith('/'))) {
+      fixedSrc = '/blog.jfif';
+    }
+
+    return `<img${before}src="${fixedSrc}"${after}`;
+  });
+}
+
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.WP_API_URL}/posts`);
   const data = await res.json();
@@ -44,12 +84,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const keywords = [...categories, ...tags].map((term: any) => term.name).join(", ");
 
   return {
-    title: post.title.rendered,
+    title: decodeHtmlEntities(post.title.rendered),
     description,
     keywords,
     authors: author ? [{ name: author.name }] : undefined,
     openGraph: {
-      title: post.title.rendered,
+      title: decodeHtmlEntities(post.title.rendered),
       description,
       type: "article",
       publishedTime: post.date,
@@ -60,13 +100,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
           url: featuredImage,
           width: 1200,
           height: 630,
-          alt: post.title.rendered,
+          alt: decodeHtmlEntities(post.title.rendered),
         }
       ] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title.rendered,
+      title: decodeHtmlEntities(post.title.rendered),
       description,
       images: featuredImage ? [featuredImage] : undefined,
     },
@@ -172,7 +212,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 px-2 sm:px-0">{post.title.rendered}</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 px-2 sm:px-0">{decodeHtmlEntities(post.title.rendered)}</h1>
 
             {/* Tags */}
             {tags.length > 0 && (
@@ -189,7 +229,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
           {/* Article Body */}
           <div className="prose prose-lg prose-gray max-w-none [&_img]:!my-12 [&_img]:!mx-auto [&_img]:!block [&_figure]:!my-12 [&_figure]:!mx-auto">
-            <div className="leading-relaxed [&>*:first-child]:mt-8 [&>*:last-child]:mb-8" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+            <div className="leading-relaxed [&>*:first-child]:mt-8 [&>*:last-child]:mb-8" dangerouslySetInnerHTML={{ __html: fixImageUrls(post.content.rendered) }} />
           </div>
 
           {/* Article Footer - Categories & Tags */}
@@ -243,7 +283,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
                   <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-gray-600 flex-shrink-0" />
                   <div className="text-left min-w-0">
                     <p className="text-xs text-gray-500 mb-1">Previous</p>
-                    <p className="font-medium text-gray-900 line-clamp-2 text-sm truncate">{prevPost.title.rendered}</p>
+                    <p className="font-medium text-gray-900 line-clamp-2 text-sm truncate">{decodeHtmlEntities(prevPost.title.rendered)}</p>
                   </div>
                 </Link>
               ) : (
@@ -257,7 +297,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
                 >
                   <div className="text-left sm:text-right min-w-0 flex-1">
                     <p className="text-xs text-gray-500 mb-1">Next</p>
-                    <p className="font-medium text-gray-900 line-clamp-2 text-sm truncate">{nextPost.title.rendered}</p>
+                    <p className="font-medium text-gray-900 line-clamp-2 text-sm truncate">{decodeHtmlEntities(nextPost.title.rendered)}</p>
                   </div>
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-gray-600 flex-shrink-0" />
                 </Link>
