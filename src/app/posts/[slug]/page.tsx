@@ -7,19 +7,19 @@ export const revalidate = 1200; // Revalidate every hour
 // Function to decode HTML entities
 function decodeHtmlEntities(text: string): string {
   const entities: { [key: string]: string } = {
-    '&#8211;': '–',
-    '&#8212;': '—',
-    '&#8216;': "'",
-    '&#8217;': "'",
-    '&#8220;': '"',
-    '&#8221;': '"',
-    '&#8230;': '…',
-    '&amp;': '&',
-    '&lt;': '<',
-    '&gt;': '>',
-    '&quot;': '"',
-    '&#039;': "'",
-    '&nbsp;': ' '
+    "&#8211;": "–",
+    "&#8212;": "—",
+    "&#8216;": "'",
+    "&#8217;": "'",
+    "&#8220;": '"',
+    "&#8221;": '"',
+    "&#8230;": "…",
+    "&amp;": "&",
+    "&lt;": "<",
+    "&gt;": ">",
+    "&quot;": '"',
+    "&#039;": "'",
+    "&nbsp;": " ",
   };
 
   return text.replace(/&#?\w+;/g, (entity) => entities[entity] || entity);
@@ -31,13 +31,13 @@ function fixImageUrls(content: string): string {
     let fixedSrc = src;
 
     // Convert protocol-relative URLs to HTTPS
-    if (fixedSrc.startsWith('//')) {
-      fixedSrc = 'https:' + fixedSrc;
+    if (fixedSrc.startsWith("//")) {
+      fixedSrc = "https:" + fixedSrc;
     }
 
     // Handle invalid URLs like "EXPORT_IMAGE_URL" or empty src
-    if (!fixedSrc || fixedSrc === 'EXPORT_IMAGE_URL' || (!fixedSrc.startsWith('http') && !fixedSrc.startsWith('/'))) {
-      fixedSrc = '/blog.jfif';
+    if (!fixedSrc || fixedSrc === "EXPORT_IMAGE_URL" || (!fixedSrc.startsWith("http") && !fixedSrc.startsWith("/"))) {
+      fixedSrc = "/static/img/blog.jfif";
     }
 
     return `<img${before}src="${fixedSrc}"${after}`;
@@ -95,14 +95,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       publishedTime: post.date,
       modifiedTime: post.modified,
       authors: author ? [author.name] : undefined,
-      images: featuredImage ? [
-        {
-          url: featuredImage,
-          width: 1200,
-          height: 630,
-          alt: decodeHtmlEntities(post.title.rendered),
-        }
-      ] : undefined,
+      images: featuredImage
+        ? [
+            {
+              url: featuredImage,
+              width: 1200,
+              height: 630,
+              alt: decodeHtmlEntities(post.title.rendered),
+            },
+          ]
+        : undefined,
     },
     twitter: {
       card: "summary_large_image",
@@ -212,14 +214,19 @@ export default async function PostPage({ params }: { params: { slug: string } })
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 px-2 sm:px-0">{decodeHtmlEntities(post.title.rendered)}</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight mb-6 sm:mb-8 px-2 sm:px-0">
+              {decodeHtmlEntities(post.title.rendered)}
+            </h1>
 
             {/* Tags */}
             {tags.length > 0 && (
               <div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap px-2 sm:px-0">
                 <Hash className="w-4 h-4 text-gray-400" />
                 {tags.slice(0, 5).map((tag: any) => (
-                  <span key={tag.id} className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">
+                  <span
+                    key={tag.id}
+                    className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                  >
                     {tag.name}
                   </span>
                 ))}
