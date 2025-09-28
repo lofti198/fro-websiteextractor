@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export const revalidate = 1200; // Disable caching for development
 
@@ -75,11 +74,10 @@ export default async function Home() {
               <Link href={`/posts/${post.slug}`} key={post.id} className="group block">
                 <article className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1">
                   <div className="relative w-full aspect-video overflow-hidden">
-                    <Image
+                    <img
                       src={featuredImage}
                       alt={decodeHtmlEntities(post.title.rendered)}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-4 sm:p-5 md:p-6">
