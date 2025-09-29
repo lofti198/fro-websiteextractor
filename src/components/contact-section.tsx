@@ -55,11 +55,11 @@ export default function ContactSection() {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                Let's Talk About Your Project
+                Let&apos;s Talk About Your Project
               </h3>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Our team of experts is ready to help you implement the perfect data extraction solution. 
-                Whether you need a simple scraper or a complex enterprise solution, we've got you covered.
+                Whether you need a simple scraper or a complex enterprise solution, we&apos;ve got you covered.
               </p>
             </div>
 
@@ -120,7 +120,7 @@ export default function ContactSection() {
                   Message Sent Successfully!
                 </h3>
                 <p className="text-gray-600">
-                  Thank you for your message. We'll get back to you within 2 hours.
+                  Thank you for your message. We&apos;ll get back to you within 2 hours.
                 </p>
               </div>
             ) : (

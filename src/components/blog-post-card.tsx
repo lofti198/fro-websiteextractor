@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BlogPostCardProps } from "@/lib/types";
 import { extractImageFromContent, sanitizeImageUrl, decodeHtmlEntities, formatDate, truncateText } from "@/lib/utils";
 
@@ -10,9 +11,11 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
     <Link href={`/posts/${post.slug}`} className="group block">
       <article className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1">
         <div className="relative w-full aspect-video overflow-hidden">
-          <img
+          <Image
             src={featuredImage}
             alt={decodeHtmlEntities(post.title.rendered)}
+            width={400}
+            height={225}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>

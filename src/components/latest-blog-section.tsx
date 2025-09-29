@@ -2,6 +2,7 @@
 
 import { Calendar, ArrowRight, Clock } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { WordPressPost } from "@/lib/types";
 
 interface LatestBlogSectionProps {
@@ -50,9 +51,11 @@ export default function LatestBlogSection({ posts }: LatestBlogSectionProps) {
               {/* Featured image */}
               {post._embedded?.['wp:featuredmedia']?.[0]?.source_url && (
                 <div className="aspect-video overflow-hidden">
-                  <img
+                  <Image
                     src={post._embedded['wp:featuredmedia'][0].source_url}
                     alt={post.title.rendered}
+                    width={400}
+                    height={225}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
