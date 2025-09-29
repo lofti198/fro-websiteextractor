@@ -1,5 +1,7 @@
-import BlogHeader from "@/components/blog-header";
-import BlogPostGrid from "@/components/blog-post-grid";
+import HeroSection from "@/components/hero-section";
+import FeaturesSection from "@/components/features-section";
+import LatestBlogSection from "@/components/latest-blog-section";
+import ContactSection from "@/components/contact-section";
 import { WordPressPost } from "@/lib/types";
 
 export const revalidate = 1200;
@@ -10,8 +12,10 @@ export default async function Home() {
 
   return (
     <main>
-      <BlogHeader />
-      <BlogPostGrid posts={posts} />
+      <HeroSection />
+      <FeaturesSection />
+      <LatestBlogSection posts={posts} />
+      <ContactSection />
     </main>
   );
 }
