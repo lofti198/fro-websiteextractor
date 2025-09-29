@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# No indexing for now
+# Remove this file or modify when ready for search engines
