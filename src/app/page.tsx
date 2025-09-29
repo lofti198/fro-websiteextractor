@@ -7,8 +7,20 @@ import { WordPressPost } from "@/lib/types";
 export const revalidate = 1200;
 
 export default async function Home() {
-  const res = await fetch(`${process.env.WP_API_URL}/posts?_embed`);
-  const posts: WordPressPost[] = await res.json();
+  let posts: WordPressPost[] = [];
+  
+  try {
+    if (process.env.WP_API_URL) {
+      const res = await fetch(`${process.env.WP_API_URL}/posts?_embed`, {
+        next: { revalidate: 1200 }
+      });
+      if (res.ok) {
+        posts = await res.json();
+      }
+    }
+  } catch (error) {
+    console.log('WordPress API not available, showing homepage without blog posts');
+  }
 
   return (
     <main>

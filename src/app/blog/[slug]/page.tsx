@@ -8,14 +8,36 @@ import PostNavigation from "@/components/blog-details/post-navigation";
 export const revalidate = 1200;
 
 async function getPost(slug: string): Promise<WordPressPost | null> {
-  const res = await fetch(`${process.env.WP_API_URL}/posts?slug=${slug}&_embed`);
-  const posts: WordPressPost[] = await res.json();
-  return posts[0] || null;
+  try {
+    if (process.env.WP_API_URL) {
+      const res = await fetch(`${process.env.WP_API_URL}/posts?slug=${slug}&_embed`, {
+        next: { revalidate: 1200 }
+      });
+      if (res.ok) {
+        const posts: WordPressPost[] = await res.json();
+        return posts[0] || null;
+      }
+    }
+  } catch (error) {
+    console.log('WordPress API not available');
+  }
+  return null;
 }
 
 async function getAllPosts(): Promise<WordPressPost[]> {
-  const res = await fetch(`${process.env.WP_API_URL}/posts?_embed`);
-  return res.json();
+  try {
+    if (process.env.WP_API_URL) {
+      const res = await fetch(`${process.env.WP_API_URL}/posts?_embed`, {
+        next: { revalidate: 1200 }
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    }
+  } catch (error) {
+    console.log('WordPress API not available');
+  }
+  return [];
 }
 
 export default async function BlogPostPage({

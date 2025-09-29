@@ -11,7 +11,7 @@ interface LatestBlogSectionProps {
 
 export default function LatestBlogSection({ posts }: LatestBlogSectionProps) {
   // Get the latest 3 posts
-  const latestPosts = posts.slice(0, 3);
+  const latestPosts = posts?.slice(0, 3) || [];
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -43,7 +43,7 @@ export default function LatestBlogSection({ posts }: LatestBlogSectionProps) {
 
         {/* Blog posts grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {latestPosts.map((post) => (
+          {latestPosts.length > 0 ? latestPosts.map((post) => (
             <article
               key={post.id}
               className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
@@ -100,19 +100,25 @@ export default function LatestBlogSection({ posts }: LatestBlogSectionProps) {
                 </Link>
               </div>
             </article>
-          ))}
+          )) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-gray-500 text-lg">Blog posts coming soon!</p>
+            </div>
+          )}
         </div>
 
         {/* View all posts CTA */}
-        <div className="text-center">
-          <Link
-            href="/blog"
-            className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
-          >
-            View All Articles
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        </div>
+        {latestPosts.length > 0 && (
+          <div className="text-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              View All Articles
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
