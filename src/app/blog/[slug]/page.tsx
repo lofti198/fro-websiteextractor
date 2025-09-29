@@ -58,11 +58,24 @@ export default async function BlogPostPage({
   const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
+  // Extract categories and tags from embedded data
+  const categories = post._embedded?.["wp:term"]?.[0] || [];
+  const tags = post._embedded?.["wp:term"]?.[1] || [];
+  const author = post._embedded?.author?.[0];
+
   return (
     <main>
-      <PostHeader post={post} />
-      <PostContent post={post} />
-      <PostFooter post={post} />
+      <PostHeader 
+        post={post} 
+        categories={categories} 
+        tags={tags} 
+        author={author} 
+      />
+      <PostContent content={post.content.rendered} />
+      <PostFooter 
+        categories={categories} 
+        tags={tags} 
+      />
       <PostNavigation prevPost={prevPost} nextPost={nextPost} />
     </main>
   );
