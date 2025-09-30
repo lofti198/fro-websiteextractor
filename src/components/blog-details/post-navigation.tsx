@@ -19,7 +19,7 @@ export default function PostNavigation({ prevPost, nextPost }: PostNavigationPro
           <div className="flex items-center gap-2 sm:gap-4">
             {prevPost && (
               <Link
-                href={`/posts/${prevPost.slug}`}
+                href={`/blog/${prevPost.slug}`}
                 className="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -29,7 +29,7 @@ export default function PostNavigation({ prevPost, nextPost }: PostNavigationPro
             )}
             {nextPost && (
               <Link
-                href={`/posts/${nextPost.slug}`}
+                href={`/blog/${nextPost.slug}`}
                 className="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <span className="hidden sm:inline">Next</span>

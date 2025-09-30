@@ -13,7 +13,7 @@ export default function PostPagination({ prevPost, nextPost }: PostPaginationPro
       <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 sm:gap-0">
         {prevPost ? (
           <Link
-            href={`/posts/${prevPost.slug}`}
+            href={`/blog/${prevPost.slug}`}
             className="group flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all w-full sm:max-w-xs"
           >
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-gray-600 flex-shrink-0" />
@@ -30,7 +30,7 @@ export default function PostPagination({ prevPost, nextPost }: PostPaginationPro
 
         {nextPost ? (
           <Link
-            href={`/posts/${nextPost.slug}`}
+            href={`/blog/${nextPost.slug}`}
             className="group flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all w-full sm:max-w-xs"
           >
             <div className="text-left sm:text-right min-w-0 flex-1">

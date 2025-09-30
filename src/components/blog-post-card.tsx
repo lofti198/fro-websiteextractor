@@ -8,7 +8,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
   const featuredImage = sanitizeImageUrl(rawFeaturedImage);
 
   return (
-    <Link href={`/posts/${post.slug}`} className="group block">
+    <Link href={`/blog/${post.slug}`} className="group block">
       <article className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1">
         <div className="relative w-full aspect-video overflow-hidden">
           <Image

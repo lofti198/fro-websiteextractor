@@ -4,12 +4,23 @@ import { WordPressPost } from "@/lib/types";
 
 export const revalidate = 1200;
 
-export default async function BlogPage() {
+interface BlogPageProps {
+  searchParams: { category?: string };
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
   let posts: WordPressPost[] = [];
   
   try {
     if (process.env.WP_API_URL) {
-      const res = await fetch(`${process.env.WP_API_URL}/posts?_embed`, {
+      // Build the API URL with optional category filter
+      let apiUrl = `${process.env.WP_API_URL}/posts?_embed&categories=1`;
+      
+      if (searchParams.category) {
+        apiUrl += `&categories=${searchParams.category}`;
+      }
+      
+      const res = await fetch(apiUrl, {
         next: { revalidate: 1200 }
       });
       if (res.ok) {
