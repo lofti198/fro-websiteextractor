@@ -14,7 +14,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   try {
     if (process.env.WP_API_URL) {
       // Build the API URL with optional category filter
-      let apiUrl = `${process.env.WP_API_URL}/posts?_embed&categories=1`;
+      let apiUrl = `${process.env.WP_API_URL}/posts?_embed`;
       
       if (searchParams.category) {
         apiUrl += `&categories=${searchParams.category}`;

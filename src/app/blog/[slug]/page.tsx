@@ -27,7 +27,7 @@ async function getPost(slug: string): Promise<WordPressPost | null> {
 async function getAllPosts(): Promise<WordPressPost[]> {
   try {
     if (process.env.WP_API_URL) {
-      const res = await fetch(`${process.env.WP_API_URL}/posts?_embed`, {
+      const res = await fetch(`${process.env.WP_API_URL}/posts?_embed&per_page=100`, {
         next: { revalidate: 1200 }
       });
       if (res.ok) {
