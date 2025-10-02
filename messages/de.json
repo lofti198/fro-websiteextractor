@@ -1,0 +1,42 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "solutions": "Lösungen",
+    "web_scraping": "Web-Scraping",
+    "data_extraction": "Datenextraktion",
+    "api_integration": "API-Integration",
+    "enterprise": "Enterprise-Lösungen",
+    "pricing": "Preise",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "demo": "Demo",
+    "get_started": "Loslegen"
+  },
+  "hero": {
+    "badge": "KI-gestütztes Web-Scraping",
+    "title": "Extrahieren Sie Daten von jeder Website mit",
+    "title_highlight": "AI Scraper",
+    "subtitle": "Verwandeln Sie jede Website in strukturierte Daten mit unserer intelligenten Scraping-Technologie. Keine Programmierung erforderlich - einfach zeigen, klicken und extrahieren.",
+    "cta_demo": "Kostenlose Demo testen",
+    "cta_pricing": "Preise ansehen",
+    "feature_any_website": "Jede Website",
+    "feature_any_website_desc": "Extrahieren Sie Daten von jeder Website, einschließlich dynamischer Inhalte und JavaScript-gerenderter Seiten",
+    "feature_structured_data": "Strukturierte Daten",
+    "feature_structured_data_desc": "Erhalten Sie saubere, strukturierte Daten im JSON-, CSV- oder Excel-Format, bereit für die Analyse",
+    "feature_ai_powered": "KI-gestützt",
+    "feature_ai_powered_desc": "Intelligente Extraktion, die sich an Website-Änderungen anpasst und komplexe Layouts bewältigt"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolgreich"
+  },
+  "footer": {
+    "copyright": "Alle Rechte vorbehalten"
+  },
+  "metadata": {
+    "title": "AI Scraper - Intelligente Web-Datenextraktion",
+    "description": "Verwandeln Sie jede Website in strukturierte Daten mit unserer KI-gestützten Scraping-Technologie. Keine Programmierung erforderlich - einfach zeigen, klicken und extrahieren."
+  }
+}
+

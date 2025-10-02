@@ -1,9 +1,12 @@
 "use client";
 
 import { ArrowRight, Zap, Globe, Database } from "lucide-react";
-import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { Link } from '../i18n/routing';
 
 export default function HeroSection() {
+  const t = useTranslations('hero');
+
   return (
     <section className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-20 lg:py-32 overflow-hidden">
       {/* Background decoration */}
@@ -16,21 +19,20 @@ export default function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-8">
             <Zap className="w-4 h-4 mr-2" />
-            AI-Powered Web Scraping
+            {t('badge')}
           </div>
           
           {/* Main heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Extract Data from Any Website with{" "}
+            {t('title')}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-              AI Scraper
+              {t('title_highlight')}
             </span>
           </h1>
           
           {/* Subheading */}
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Transform any website into structured data with our intelligent scraping technology. 
-            No coding required - just point, click, and extract.
+            {t('subtitle')}
           </p>
           
           {/* CTA Buttons */}
@@ -39,14 +41,14 @@ export default function HeroSection() {
               href="/demo"
               className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Try Free Demo
+              {t('cta_demo')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link
               href="/pricing"
               className="inline-flex items-center px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-blue-600 hover:text-blue-600 transition-all duration-200"
             >
-              View Pricing
+              {t('cta_pricing')}
             </Link>
           </div>
           
@@ -56,24 +58,24 @@ export default function HeroSection() {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                 <Globe className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Any Website</h3>
-              <p className="text-gray-600">Extract data from any website, including dynamic content and JavaScript-rendered pages</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('feature_any_website')}</h3>
+              <p className="text-gray-600">{t('feature_any_website_desc')}</p>
             </div>
             
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                 <Database className="w-8 h-8 text-indigo-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Structured Data</h3>
-              <p className="text-gray-600">Get clean, structured data in JSON, CSV, or Excel format ready for analysis</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('feature_structured_data')}</h3>
+              <p className="text-gray-600">{t('feature_structured_data_desc')}</p>
             </div>
             
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                 <Zap className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Powered</h3>
-              <p className="text-gray-600">Smart extraction that adapts to website changes and handles complex layouts</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('feature_ai_powered')}</h3>
+              <p className="text-gray-600">{t('feature_ai_powered_desc')}</p>
             </div>
           </div>
         </div>

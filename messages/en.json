@@ -1,0 +1,42 @@
+{
+  "navigation": {
+    "home": "Home",
+    "solutions": "Solutions",
+    "web_scraping": "Web Scraping",
+    "data_extraction": "Data Extraction",
+    "api_integration": "API Integration",
+    "enterprise": "Enterprise Solutions",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact",
+    "demo": "Demo",
+    "get_started": "Get Started"
+  },
+  "hero": {
+    "badge": "AI-Powered Web Scraping",
+    "title": "Extract Data from Any Website with",
+    "title_highlight": "AI Scraper",
+    "subtitle": "Transform any website into structured data with our intelligent scraping technology. No coding required - just point, click, and extract.",
+    "cta_demo": "Try Free Demo",
+    "cta_pricing": "View Pricing",
+    "feature_any_website": "Any Website",
+    "feature_any_website_desc": "Extract data from any website, including dynamic content and JavaScript-rendered pages",
+    "feature_structured_data": "Structured Data",
+    "feature_structured_data_desc": "Get clean, structured data in JSON, CSV, or Excel format ready for analysis",
+    "feature_ai_powered": "AI-Powered",
+    "feature_ai_powered_desc": "Smart extraction that adapts to website changes and handles complex layouts"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success"
+  },
+  "footer": {
+    "copyright": "All rights reserved"
+  },
+  "metadata": {
+    "title": "AI Scraper - Intelligent Web Data Extraction",
+    "description": "Transform any website into structured data with our AI-powered scraping technology. No coding required - just point, click, and extract."
+  }
+}
+

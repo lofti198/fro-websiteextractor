@@ -1,45 +1,48 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from "lucide-react";
 import { raleway } from "@/lib/fonts";
-
-const navLinks = [
-  {
-    href: "/",
-    label: "Home",
-  },
-  {
-    href: "/solutions",
-    label: "Solutions",
-    hasDropdown: true,
-    dropdownItems: [
-      { href: "/solutions/web-scraping", label: "Web Scraping" },
-      { href: "/solutions/data-extraction", label: "Data Extraction" },
-      { href: "/solutions/api-integration", label: "API Integration" },
-      { href: "/solutions/enterprise", label: "Enterprise Solutions" },
-    ],
-  },
-  {
-    href: "/pricing",
-    label: "Pricing",
-  },
-  {
-    href: "/blog",
-    label: "Blog",
-  },
-  {
-    href: "/contact",
-    label: "Contact",
-  },
-];
+import { Link } from '../i18n/routing';
+import LanguageSelector from './language-selector';
 
 export default function Header() {
+  const t = useTranslations('navigation');
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const navLinks = [
+    {
+      href: "/",
+      label: t('home'),
+    },
+    {
+      href: "/solutions",
+      label: t('solutions'),
+      hasDropdown: true,
+      dropdownItems: [
+        { href: "/solutions/web-scraping", label: t('web_scraping') },
+        { href: "/solutions/data-extraction", label: t('data_extraction') },
+        { href: "/solutions/api-integration", label: t('api_integration') },
+        { href: "/solutions/enterprise", label: t('enterprise') },
+      ],
+    },
+    {
+      href: "/pricing",
+      label: t('pricing'),
+    },
+    {
+      href: "/blog",
+      label: t('blog'),
+    },
+    {
+      href: "/contact",
+      label: t('contact'),
+    },
+  ];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -110,14 +113,15 @@ export default function Header() {
               href="/demo"
               className="px-6 py-2 text-blue-600 font-medium hover:text-blue-700 transition-colors"
             >
-              Demo
+              {t('demo')}
             </Link>
             <Link
               href="/get-started"
               className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
             >
-              Get Started
+              {t('get_started')}
             </Link>
+            <LanguageSelector />
           </div>
 
           {/* Mobile menu button */}
@@ -180,14 +184,17 @@ export default function Header() {
                   href="/demo"
                   className="block text-center px-6 py-2 text-blue-600 font-medium hover:text-blue-700 transition-colors"
                 >
-                  Demo
+                  {t('demo')}
                 </Link>
                 <Link
                   href="/get-started"
                   className="block text-center px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Get Started
+                  {t('get_started')}
                 </Link>
+                <div className="pt-2">
+                  <LanguageSelector />
+                </div>
               </div>
             </nav>
           </div>
