@@ -1,7 +1,8 @@
 {
   "navigation": {
     "home": "Home",
-    "solutions": "Solutions",
+    "solutions": "Services",
+    "services": "Services",
     "web_scraping": "Web Scraping",
     "data_extraction": "Data Extraction",
     "api_integration": "API Integration",
@@ -11,6 +12,17 @@
     "contact": "Contact",
     "demo": "Demo",
     "get_started": "Get Started"
+  },
+  "services": {
+    "home": "Home",
+    "services": "Services",
+    "title": "Professional Data Extraction Services",
+    "subtitle": "Comprehensive solutions for extracting, processing, and structuring data from any web source. Choose from our range of professional services designed for businesses of all sizes.",
+    "satisfied_clients": "Satisfied Clients",
+    "pages_scraped": "Pages Scraped Daily",
+    "uptime": "Uptime Guarantee",
+    "get_started": "Get Started",
+    "view_services": "View Services"
   },
   "hero": {
     "badge": "AI-Powered Web Scraping",

@@ -20,14 +20,14 @@ export default function Header() {
       label: t('home'),
     },
     {
-      href: "/solutions",
-      label: t('solutions'),
+      href: "/services",
+      label: t('services'),
       hasDropdown: true,
       dropdownItems: [
-        { href: "/solutions/web-scraping", label: t('web_scraping') },
-        { href: "/solutions/data-extraction", label: t('data_extraction') },
-        { href: "/solutions/api-integration", label: t('api_integration') },
-        { href: "/solutions/enterprise", label: t('enterprise') },
+        { href: "/services/google-maps-scraper", label: "Google Maps Scraper" },
+        { href: "/services/linkedin-scraper", label: "LinkedIn Scraper" },
+        { href: "/services/instagram-scraper", label: "Instagram Scraper" },
+        { href: "/services/amazon-product-scraper", label: "Amazon Scraper" },
       ],
     },
     {

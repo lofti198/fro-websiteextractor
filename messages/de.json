@@ -1,7 +1,8 @@
 {
   "navigation": {
     "home": "Startseite",
-    "solutions": "Lösungen",
+    "solutions": "Services",
+    "services": "Services",
     "web_scraping": "Web-Scraping",
     "data_extraction": "Datenextraktion",
     "api_integration": "API-Integration",
@@ -11,6 +12,17 @@
     "contact": "Kontakt",
     "demo": "Demo",
     "get_started": "Loslegen"
+  },
+  "services": {
+    "home": "Startseite",
+    "services": "Services",
+    "title": "Professionelle Datenextraktions-Services",
+    "subtitle": "Umfassende Lösungen für die Extraktion, Verarbeitung und Strukturierung von Daten aus jeder Webquelle. Wählen Sie aus unserem breiten Spektrum professioneller Services für Unternehmen jeder Größe.",
+    "satisfied_clients": "Zufriedene Kunden",
+    "pages_scraped": "Täglich gelesene Seiten",
+    "uptime": "Verfügbarkeitsgarantie",
+    "get_started": "Loslegen",
+    "view_services": "Services ansehen"
   },
   "hero": {
     "badge": "KI-gestütztes Web-Scraping",
