@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '../i18n/routing';
 import { Menu, X, ChevronDown } from "lucide-react";
 import { raleway } from "@/lib/fonts";
 import { Link } from '../i18n/routing';

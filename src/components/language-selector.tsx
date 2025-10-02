@@ -29,7 +29,9 @@ const LanguageSelector = () => {
   }, []);
 
   const handleLanguageChange = (langCode: string) => {
-    router.push(pathname, { locale: langCode });
+    // Force navigation with locale change
+    const currentPath = pathname === '/' ? '' : pathname;
+    window.location.href = `/${langCode}${currentPath}`;
     setIsLangOpen(false);
   };
 
